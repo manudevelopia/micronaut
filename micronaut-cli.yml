@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: info.developia
+---
+testFramework: junit
+sourceLanguage: java
