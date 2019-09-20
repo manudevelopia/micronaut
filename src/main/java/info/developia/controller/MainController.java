@@ -9,10 +9,13 @@ import io.micronaut.http.annotation.Produces;
 @Controller
 public class MainController {
 
+    public static final String GREETING = "This is a micronaut application!!!";
+
     @Get
     @Produces(MediaType.TEXT_PLAIN)
     HttpResponse<String> main(){
-        return HttpResponse.ok("This is a micronaut application!!!");
+        return HttpResponse.ok(GREETING);
     }
 
 }
+
