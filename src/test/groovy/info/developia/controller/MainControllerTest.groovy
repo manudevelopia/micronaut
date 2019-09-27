@@ -5,15 +5,14 @@ import io.micronaut.http.client.BlockingHttpClient;
 import io.micronaut.http.client.RxHttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.annotation.MicronautTest;
-import org.junit.jupiter.api.Test;
+import spock.lang.Specification;
 
 import javax.inject.Inject;
 
 import static info.developia.controller.MainController.GREETING;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @MicronautTest
-public class MainControllerTest {
+class MainControllerTest extends Specification{
 
     @Inject
     @Client("/")
@@ -23,13 +22,11 @@ public class MainControllerTest {
         return client.toBlocking();
     }
 
-    @Test
-    public void testMainController(){
+    void "testMainController"(){
+        when:
         String message = getClient().retrieve(HttpRequest.GET("/"));
-
-        assertEquals(GREETING, message);
+        then:
+        GREETING == message
     }
-
-
 
 }
