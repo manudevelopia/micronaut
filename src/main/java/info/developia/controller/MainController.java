@@ -1,5 +1,7 @@
 package info.developia.controller;
 
+import info.developia.model.User;
+import info.developia.service.UserSerivce;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
@@ -9,12 +11,18 @@ import io.micronaut.http.annotation.Produces;
 @Controller
 public class MainController {
 
-    public static final String GREETING = "This is a micronaut application!!!";
+    private final UserSerivce userSerivce;
 
-    @Get
-    @Produces(MediaType.TEXT_PLAIN)
-    HttpResponse<String> main(){
-        return HttpResponse.ok(GREETING);
+    public MainController(UserSerivce userSerivce) {
+        this.userSerivce = userSerivce;
+    }
+
+    @Get("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    HttpResponse<User> main(Long id){
+        User user = userSerivce.getUserById(id);
+
+        return HttpResponse.ok(user);
     }
 
 }
