@@ -1,5 +1,6 @@
-package info.developia.controller;
+package info.developia.controller
 
+import groovy.json.JsonSlurper;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.BlockingHttpClient;
 import io.micronaut.http.client.RxHttpClient;
@@ -9,7 +10,6 @@ import spock.lang.Specification;
 
 import javax.inject.Inject;
 
-import static info.developia.controller.MainController.GREETING;
 
 @MicronautTest
 class MainControllerTest extends Specification{
@@ -24,9 +24,9 @@ class MainControllerTest extends Specification{
 
     void "testMainController"(){
         when:
-        String message = getClient().retrieve(HttpRequest.GET("/"));
+        String response = getClient().retrieve(HttpRequest.GET("/2"));
         then:
-        GREETING == message
+        "{\"id\":2,\"name\":\"Name 2\",\"email\":\"email@mail2.com\"}" == response
     }
 
 }
