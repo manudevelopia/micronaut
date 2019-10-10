@@ -1,7 +1,7 @@
 package info.developia.controller;
 
 import info.developia.model.User;
-import info.developia.service.UserSerivce;
+import info.developia.service.UserService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
@@ -11,9 +11,9 @@ import io.micronaut.http.annotation.Produces;
 @Controller
 public class MainController {
 
-    private final UserSerivce userSerivce;
+    private final UserService userSerivce;
 
-    public MainController(UserSerivce userSerivce) {
+    public MainController(UserService userSerivce) {
         this.userSerivce = userSerivce;
     }
 
